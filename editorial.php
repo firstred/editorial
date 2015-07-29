@@ -33,7 +33,7 @@ class Editorial extends Module
 	{
 		$this->name = 'editorial';
 		$this->tab = 'front_office_features';
-		$this->version = '2.5.5';
+		$this->version = '9.9.9';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -50,7 +50,8 @@ class Editorial extends Module
 
 	public function install()
 	{
-		if (!parent::install() || !$this->registerHook('displayHome') || !$this->registerHook('displayHeader'))
+		if (!parent::install() || !$this->registerHook('displayHome') || !$this->registerHook('displayHeader')
+            || !$this->registerHook('displayHomeTab'))
 			return false;
 
 		$res = Db::getInstance()->execute(
@@ -329,6 +330,11 @@ class Editorial extends Module
 			return;
 		return $this->hookDisplayHome($params);
 	}
+
+    public function hookDisplayHomeTab($params)
+    {
+        return $this->hookDisplayHome($params);
+    }
 
 	public function hookDisplayHeader()
 	{
